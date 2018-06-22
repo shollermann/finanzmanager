@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finanzmanager.controller.Startup">
+  <columnConstraints>
+      <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="344.0" minHeight="10.0" prefHeight="332.0" valignment="CENTER" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="50.0" valignment="CENTER" vgrow="NEVER" />
+  </rowConstraints>
+   <children>
+      <MenuBar GridPane.columnSpan="4">
+        <menus>
+          <Menu mnemonicParsing="false" text="Datei">
+            <items>
+              <MenuItem fx:id="miExit" mnemonicParsing="false" onAction="#exit" text="Schließen" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ansicht">
+            <items>
+              <MenuItem fx:id="miTransaction" mnemonicParsing="false" onAction="#newTransaction" text="neue Transaktion" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Hilfe">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane prefHeight="205.0" prefWidth="423.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="4" GridPane.rowIndex="1">
+        <tabs>
+          <Tab text="Zusammenfassung">
+               <content>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Festes Einkommen">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Feste Ausgaben" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Variable Transaktionen" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Ausgaben pro Tag" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="txtFixEinkommen" editable="false" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtFixAusgaben" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtTransaktionen" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtMaxTaeglicheAusgaben" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                     </children>
+                  </GridPane>
+               </content></Tab>
+          <Tab text="Transaktionen">
+               <content>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="317.0" prefWidth="451.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="+/-" />
+                            <TableColumn prefWidth="75.0" text="Betrag" />
+                              <TableColumn prefWidth="220.0" text="Bezeichnung" />
+                              <TableColumn prefWidth="75.0" text="Bezug" />
+                          </columns>
+                        </TableView>
+                        <VBox alignment="CENTER" prefHeight="317.0" prefWidth="151.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefWidth="200.0" text="Bearbeiten" />
+                              <Button minWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Löschen">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </content></Tab>
+        </tabs>
+      </TabPane>
+      <Button fx:id="btnTransaction" mnemonicParsing="false" onAction="#newTransaction" text="Neues Einkommen" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+      <Button fx:id="btnExit" mnemonicParsing="false" onAction="#exit" text="Programm beenden" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+   </children>
+</GridPane>
