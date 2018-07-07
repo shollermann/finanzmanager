@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finanzmanager.controller.Startup">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finanzmanager.controller.ViewHandler">
   <columnConstraints>
       <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
       <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
@@ -122,8 +122,8 @@
                         </TableView>
                         <VBox alignment="CENTER" prefHeight="317.0" prefWidth="151.0">
                            <children>
-                              <Button mnemonicParsing="false" prefWidth="200.0" text="Bearbeiten" />
-                              <Button minWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Löschen">
+                              <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#btnEdit" prefWidth="200.0" text="Bearbeiten" />
+                              <Button fx:id="btnDelete" minWidth="150.0" mnemonicParsing="false" onAction="#btnDelete" prefWidth="150.0" text="Löschen">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>

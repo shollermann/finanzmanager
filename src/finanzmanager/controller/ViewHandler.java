@@ -3,17 +3,15 @@ package finanzmanager.controller;
 
 import finanzmanager.model.Property;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class Startup extends Application {
 
@@ -21,6 +19,8 @@ public class Startup extends Application {
      * Controls
      */
     @FXML private Button btnExit;
+    @FXML public Button btnDelete;
+    @FXML public Button btnEdit;
     @FXML public MenuItem miExit;
     @FXML public ListView lvSources;
     @FXML public Button btnSource;
@@ -85,5 +85,28 @@ public class Startup extends Application {
         sourceWindow = initProperty(sourceWindow, "../view/javafx/Sources.fxml", 400,800, "Quellen bearbeiten");
         createView(stage, sourceWindow);
 
+    }
+
+    public void btnEdit() throws IOException {
+        Stage stage = (Stage) btnEdit.getScene().getWindow();
+        transactionWindow = initProperty(transactionWindow, "../view/javafx/Transaction.fxml",400,800,"Neue Transaktion");
+        createView(stage, transactionWindow);
+    }
+
+    public void btnDelete() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Sicherheitsbestätigung");
+        alert.setHeaderText("Soll dieser Datensatz tatsächlich gelöscht werden?");
+        alert.setContentText("Ja oder nein?");
+        ButtonType buttonTypeYes = new ButtonType("Ja");
+        ButtonType buttonTypeNo = new ButtonType("Nein");
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get()== buttonTypeYes){
+            System.out.println("Datensatz wird gelöscht");
+        } else {
+            System.out.println("Nix");
+        }
     }
 }
