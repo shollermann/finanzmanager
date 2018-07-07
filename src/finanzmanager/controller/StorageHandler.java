@@ -12,7 +12,7 @@ public class StorageHandler {
 
     public StorageHandler() throws IOException {
 
-         loggingHandler = new LoggingHandler(getClass())
+         //loggingHandler = new LoggingHandler(getClass())
 
         Connection connection = null;
         String url = "jdbc:sqlite:./transaction2.db";
@@ -28,4 +28,13 @@ public class StorageHandler {
             e.printStackTrace();
         }
     }
+
+    public boolean createStruckture(){
+        boolean correct = false;
+        String sql = "CREATE TABLE IF NOT EXISTS transaction (" +
+                "";
+
+        return correct;
+    }
+
 }
