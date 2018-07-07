@@ -9,8 +9,18 @@ public class Property {
 
     String loggingFilePath;
 
+    String dateFormat = "DD.MM.YYYY";
+
     public Property(String viewPath) {
         this.viewPath = viewPath;
+    }
+
+    public void setViewPath(String viewPath) {
+        this.viewPath = viewPath;
+    }
+
+    public void setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
     }
 
     public void setLoggingFilePath(String loggingFilePath) {
@@ -35,6 +45,10 @@ public class Property {
 
     public String getLoggingFilePath() {
         return loggingFilePath;
+    }
+
+    public String getDateFormat() {
+        return dateFormat;
     }
 
     public int getWidth() {

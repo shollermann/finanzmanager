@@ -2,10 +2,10 @@ package finanzmanager.model;
 
 import java.util.Date;
 
-public class Transaction {
+public class MoneyTransfer {
 
     private boolean additive;
-    private Long value;
+    private Double value;
     private String description;
     private Date date;
     private enum TransactionType {SINGLE, DAILY, WEEKLY, MONTHLY, YEARLY};
@@ -38,7 +38,7 @@ public class Transaction {
         this.additive = additive;
     }
 
-    public void setValue(Long value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
@@ -54,7 +54,7 @@ public class Transaction {
         return additive;
     }
 
-    public Long getValue() {
+    public Double getValue() {
         return value;
     }
 
@@ -64,5 +64,15 @@ public class Transaction {
 
     public Date getDate() {
         return date;
+    }
+
+    @Override
+    public String toString() {
+        return "MoneyTransfer{" +
+                "additive=" + additive +
+                ", value=" + value +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                '}';
     }
 }

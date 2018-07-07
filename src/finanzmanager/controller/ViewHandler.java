@@ -51,7 +51,7 @@ public class ViewHandler extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        StorageHandler storageHandler = new StorageHandler();
+        StorageHandler storageHandler = new StorageHandler(mainWindow);
         createView(stage, mainWindow);
     }
 
@@ -73,7 +73,7 @@ public class ViewHandler extends Application {
 
     public void newTransaction() throws IOException {
         Stage stage = (Stage) btnTransaction.getScene().getWindow();
-        transactionWindow = initProperty(transactionWindow, "../view/desktop/Transaction.fxml",400,800,"Neue Transaktion");
+        transactionWindow = initProperty(transactionWindow, "../view/desktop/MoneyTransfer.fxml",400,800,"Neue Transaktion");
         createView(stage,transactionWindow);
     }
 
@@ -91,7 +91,7 @@ public class ViewHandler extends Application {
 
     public void btnEdit() throws IOException {
         Stage stage = (Stage) btnEdit.getScene().getWindow();
-        transactionWindow = initProperty(transactionWindow, "../view/desktop/Transaction.fxml",400,800,"Neue Transaktion");
+        transactionWindow = initProperty(transactionWindow, "../view/desktop/MoneyTransfer.fxml",400,800,"Neue Transaktion");
         createView(stage, transactionWindow);
     }
 
