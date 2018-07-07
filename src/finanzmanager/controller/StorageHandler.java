@@ -39,6 +39,7 @@ public class StorageHandler {
                 }
 
                 getAllMoneyTransfers();
+                getAllSources();
             }
 
         } catch (SQLException e) {
@@ -113,13 +114,15 @@ public class StorageHandler {
 
     public List<Source> getAllSources() {
         List<Source> sourceList = new ArrayList<>();
-        String sql = "SELECT * FROM source";
+        String sql = "SELECT rowid,* FROM source";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()){
                 Map<String, Object> row = getRowData(resultSet);
                 sourceList.add(generateSourceList(row));
+                sourceList.get(0).toString();
+
             }
 
             } catch (SQLException e) {
@@ -129,12 +132,15 @@ public class StorageHandler {
         }
 
     private Source generateSourceList(Map<String,Object> dataSource) {
-        Source source = new Source((String)dataSource.get("name"));
+        System.out.println(dataSource.toString());
+        int id = (int) dataSource.get("rowid");
+        String name = (String) dataSource.get("name");
+        Source source = new Source(id, name);
         return source;
     }
 
 
-    public Source getSource(String name){
+    public Source searchSource(String name){
         Source source = new Source(name);
         return source;
     }
@@ -150,7 +156,7 @@ public class StorageHandler {
         return moneyTransfer;
     }
 
-    public MoneyTransfer getMoneyTransfer(String fieldName, Object vielValue){
+    public MoneyTransfer searchMoneyTransfer(String fieldName, Object vielValue){
         MoneyTransfer moneyTransfer = new MoneyTransfer();
 
         return moneyTransfer;
@@ -160,10 +166,11 @@ public class StorageHandler {
         Map<String, Object> rowData = new HashMap<>();
         try {
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-            for(int i = 1; i<resultSetMetaData.getColumnCount(); i++){
-                String rowName = resultSetMetaData.getColumnName(i);
-                Object columnValue = resultSet.getObject(rowName);
-                rowData.put(rowName,columnValue);
+            for(int i = 1; i<resultSetMetaData.getColumnCount()+1; i++){
+                String columnName = resultSetMetaData.getColumnName(i);
+
+                Object columnValue = resultSet.getObject(columnName);
+                rowData.put(columnName,columnValue);
             }
         } catch (SQLException e) {
             e.printStackTrace();
