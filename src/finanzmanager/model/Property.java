@@ -7,8 +7,14 @@ public class Property {
     String title;
     String viewPath;
 
+    String loggingFilePath;
+
     public Property(String viewPath) {
         this.viewPath = viewPath;
+    }
+
+    public void setLoggingFilePath(String loggingFilePath) {
+        this.loggingFilePath = loggingFilePath;
     }
 
     public void setWidth(int width) {
@@ -25,6 +31,10 @@ public class Property {
 
     public String getViewPath() {
         return viewPath;
+    }
+
+    public String getLoggingFilePath() {
+        return loggingFilePath;
     }
 
     public int getWidth() {

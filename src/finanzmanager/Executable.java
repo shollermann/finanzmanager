@@ -1,10 +1,10 @@
 package finanzmanager;
 
-import finanzmanager.controller.Startup;
+import finanzmanager.controller.ViewHandler;
 
 public class Executable {
     public static void main(String[] args) {
 
-        new Startup().launch(Startup.class, args);
+        new ViewHandler().launch(ViewHandler.class, args);
     }
 }

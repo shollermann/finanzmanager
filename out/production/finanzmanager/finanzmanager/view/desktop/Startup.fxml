@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finanzmanager.controller.Startup">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finanzmanager.controller.ViewHandler">
   <columnConstraints>
       <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
       <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
@@ -39,7 +39,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Ansicht">
             <items>
-              <MenuItem mnemonicParsing="false" text="neue Transaktion" fx:id="miTransaction" onAction="#newTransaction" />
+              <MenuItem fx:id="miTransaction" mnemonicParsing="false" onAction="#newTransaction" text="neue Transaktion" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Hilfe">
@@ -85,22 +85,22 @@
                               <Insets right="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <TextField fx:id="txtFixEinkommen" GridPane.columnIndex="1">
+                        <TextField fx:id="txtFixEinkommen" editable="false" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="10.0" right="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="txtFixAusgaben" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="txtFixAusgaben" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="10.0" right="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="txtTransaktionen" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="txtTransaktionen" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="10.0" right="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="txtMaxTaeglicheAusgaben" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="txtMaxTaeglicheAusgaben" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets left="10.0" right="10.0" />
                            </GridPane.margin>
@@ -116,14 +116,15 @@
                           <columns>
                             <TableColumn prefWidth="75.0" text="+/-" />
                             <TableColumn prefWidth="75.0" text="Betrag" />
+                              <TableColumn prefWidth="75.0" text="Datum" />
                               <TableColumn prefWidth="220.0" text="Bezeichnung" />
                               <TableColumn prefWidth="75.0" text="Bezug" />
                           </columns>
                         </TableView>
                         <VBox alignment="CENTER" prefHeight="317.0" prefWidth="151.0">
                            <children>
-                              <Button mnemonicParsing="false" prefWidth="200.0" text="Bearbeiten" />
-                              <Button minWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Löschen">
+                              <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#btnEdit" prefWidth="200.0" text="Bearbeiten" />
+                              <Button fx:id="btnDelete" minWidth="150.0" mnemonicParsing="false" onAction="#btnDelete" prefWidth="150.0" text="Löschen">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>

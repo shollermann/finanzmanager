@@ -116,6 +116,7 @@
                           <columns>
                             <TableColumn prefWidth="75.0" text="+/-" />
                             <TableColumn prefWidth="75.0" text="Betrag" />
+                              <TableColumn prefWidth="75.0" text="Datum" />
                               <TableColumn prefWidth="220.0" text="Bezeichnung" />
                               <TableColumn prefWidth="75.0" text="Bezug" />
                           </columns>

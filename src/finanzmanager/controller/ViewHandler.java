@@ -13,12 +13,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class Startup extends Application {
+public class ViewHandler extends Application {
 
     /**
      * Controls
      */
     @FXML private Button btnExit;
+    @FXML public ComboBox cbQuellen;
     @FXML public Button btnDelete;
     @FXML public Button btnEdit;
     @FXML public MenuItem miExit;
@@ -36,8 +37,8 @@ public class Startup extends Application {
     private Property transactionWindow;
 
 
-    public Startup() {
-        mainWindow = initProperty(mainWindow,"../view/javafx/Startup.fxml", 400, 800,  "Finanzmanager");
+    public ViewHandler() {
+        mainWindow = initProperty(mainWindow,"../view/desktop/Startup.fxml", 400, 800,  "Finanzmanager");
     }
 
     private Property initProperty(Property property, String viewPath, int height,int width, String title){
@@ -50,6 +51,7 @@ public class Startup extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        StorageHandler storageHandler = new StorageHandler();
         createView(stage, mainWindow);
     }
 
@@ -71,7 +73,7 @@ public class Startup extends Application {
 
     public void newTransaction() throws IOException {
         Stage stage = (Stage) btnTransaction.getScene().getWindow();
-        transactionWindow = initProperty(transactionWindow, "../view/javafx/Transaction.fxml",400,800,"Neue Transaktion");
+        transactionWindow = initProperty(transactionWindow, "../view/desktop/Transaction.fxml",400,800,"Neue Transaktion");
         createView(stage,transactionWindow);
     }
 
@@ -82,14 +84,14 @@ public class Startup extends Application {
 
     public void editSources() throws IOException {
         Stage stage = (Stage) btnSource.getScene().getWindow();
-        sourceWindow = initProperty(sourceWindow, "../view/javafx/Sources.fxml", 400,800, "Quellen bearbeiten");
+        sourceWindow = initProperty(sourceWindow, "../view/desktop/Sources.fxml", 400,800, "Quellen bearbeiten");
         createView(stage, sourceWindow);
 
     }
 
     public void btnEdit() throws IOException {
         Stage stage = (Stage) btnEdit.getScene().getWindow();
-        transactionWindow = initProperty(transactionWindow, "../view/javafx/Transaction.fxml",400,800,"Neue Transaktion");
+        transactionWindow = initProperty(transactionWindow, "../view/desktop/Transaction.fxml",400,800,"Neue Transaktion");
         createView(stage, transactionWindow);
     }
 
