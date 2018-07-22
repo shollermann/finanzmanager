@@ -10,9 +10,14 @@ public class Property {
     String loggingFilePath;
 
     String dateFormat = "DD.MM.YYYY";
+    String currencySymbol=" €";
 
     public Property(String viewPath) {
         this.viewPath = viewPath;
+    }
+
+    public void setCurrencySymbol(String currencySymbol) {
+        this.currencySymbol = currencySymbol;
     }
 
     public void setViewPath(String viewPath) {
@@ -37,6 +42,10 @@ public class Property {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getCurrencySymbol() {
+        return currencySymbol;
     }
 
     public String getViewPath() {

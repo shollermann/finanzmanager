@@ -1,18 +1,27 @@
 package finanzmanager.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MoneyTransfer {
 
+    public enum TransactionType {SINGLE, DAILY, WEEKLY, MONTHLY, YEARLY};
     private int id;
     private boolean additive;
     private Double value;
     private String description;
     private Date date;
-    private enum TransactionType {SINGLE, DAILY, WEEKLY, MONTHLY, YEARLY};
+    private TransactionType transactionType = TransactionType.SINGLE;
 
+    public TransactionType getTransactionType() {
+        return transactionType;
+    }
 
-    private String getTransactionText(TransactionType transactionType){
+    public void setTransactionType(TransactionType transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    public String getTransactionText(TransactionType transactionType){
         switch (transactionType){
             case SINGLE:
                 return "Einzelbuchung";
@@ -59,8 +68,9 @@ public class MoneyTransfer {
         return id;
     }
 
-    public boolean isAdditive() {
-        return additive;
+    public String isAdditive() {
+        String add = (additive ? "+":"-");
+        return add;
     }
 
     public Double getValue() {
@@ -71,8 +81,11 @@ public class MoneyTransfer {
         return description;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("DD.MM.yyyy");
+
+        return simpleDateFormat.format(this.date);
     }
 
     @Override

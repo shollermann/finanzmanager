@@ -112,7 +112,7 @@
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableTransactions" prefHeight="317.0" prefWidth="451.0">
+                        <TableView fx:id="tableTransactions" prefHeight="317.0" prefWidth="600.0">
                           <columns>
                             <TableColumn fx:id="colId" prefWidth="75.0" text="rowid" />
                             <TableColumn fx:id="colAdditive" prefWidth="75.0" text="+/-" />

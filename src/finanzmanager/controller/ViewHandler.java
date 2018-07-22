@@ -74,6 +74,62 @@ public class ViewHandler extends Application {
         storageHandler.getAllSources();
         createView(stage, mainWindow);
         addDataToTable(storageHandler.getAllMoneyTransfers());
+        calculateOverview(storageHandler.getAllMoneyTransfers());
+    }
+
+    private void calculateOverview(ObservableList<MoneyTransfer> allMoneyTransfers) {
+        Double sumSingleIncome = 0.0;
+        Double sumSingleOutcome = 0.0;
+        Double sumDailyIncome = 0.0;
+        Double sumWeeklyIncome = 0.0;
+        Double sumMonthlyIncome = 0.0;
+        Double sumYearlyIncome = 0.0;
+        Double sumDailyOutcome = 0.0;
+        Double sumWeeklyOutcome = 0.0;
+        Double sumMonthlyOutcome = 0.0;
+        Double sumYearlyOutcome = 0.0;
+
+
+        for (MoneyTransfer moneyTransfer: allMoneyTransfers)
+            if (moneyTransfer.isAdditive()=="+") {
+                switch (moneyTransfer.getTransactionType()) {
+                    case SINGLE:
+                        sumSingleIncome+=moneyTransfer.getValue();
+                        break;
+                    case DAILY:
+                        sumDailyIncome+=moneyTransfer.getValue();
+                        break;
+                    case WEEKLY:
+                        sumWeeklyIncome+=moneyTransfer.getValue();
+                        break;
+                    case MONTHLY:
+                        sumMonthlyIncome+=moneyTransfer.getValue();
+                        break;
+                    case YEARLY:
+                        sumYearlyIncome+=moneyTransfer.getValue();
+                        break;
+                    }
+                }else {
+                switch (moneyTransfer.getTransactionType()){
+                    case SINGLE:
+                        sumSingleOutcome+=moneyTransfer.getValue();
+                        break;
+                    case DAILY:
+                        sumDailyOutcome+=moneyTransfer.getValue();
+                        break;
+                    case WEEKLY:
+                        sumWeeklyOutcome+=moneyTransfer.getValue();
+                        break;
+                    case MONTHLY:
+                        sumMonthlyOutcome+=moneyTransfer.getValue();
+                        break;
+                    case YEARLY:
+                        sumYearlyOutcome+=moneyTransfer.getValue();
+                        break;
+                }
+            }
+        txtFixEinkommen.setText(sumSingleIncome+mainWindow.getCurrencySymbol());
+        txtFixAusgaben.setText(sumSingleOutcome+mainWindow.getCurrencySymbol());
     }
 
     private void addDataToTable(ObservableList<MoneyTransfer> allMoneyTransfer){
@@ -82,8 +138,8 @@ public class ViewHandler extends Application {
         propertyLists.add(new PropertyValueFactory<>("id"));
         propertyLists.add(new PropertyValueFactory<>("additive"));
         propertyLists.add(new PropertyValueFactory<>("value"));
-        propertyLists.add(new PropertyValueFactory<>("description"));
         propertyLists.add(new PropertyValueFactory<>("date"));
+        propertyLists.add(new PropertyValueFactory<>("description"));
 
         for (int i =0; i < propertyLists.size(); i++){
             tableTransactions.getColumns().get(i).setCellValueFactory(propertyLists.get(i));
@@ -106,7 +162,7 @@ public class ViewHandler extends Application {
         scene = new Scene(root, property.getWidth(),property.getHeight());
         tableTransactions = (TableView) scene.lookup("#tableTransactions");
         txtFixAusgaben = (TextField) scene.lookup("#txtFixAusgaben");
-
+        txtFixEinkommen = (TextField) scene.lookup("#txtFixEinkommen");
 
         stage.setScene(scene);
         stage.show();
