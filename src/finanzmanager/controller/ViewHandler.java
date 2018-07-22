@@ -29,6 +29,8 @@ public class ViewHandler extends Application {
     public TableColumn colDescription;
     public TableColumn colSource;
     public TableColumn colId;
+    public TextField txtTransaktionen;
+    public TextField txtMaxTaeglicheAusgaben;
     /**
      * Controls
      */
@@ -163,6 +165,8 @@ public class ViewHandler extends Application {
         tableTransactions = (TableView) scene.lookup("#tableTransactions");
         txtFixAusgaben = (TextField) scene.lookup("#txtFixAusgaben");
         txtFixEinkommen = (TextField) scene.lookup("#txtFixEinkommen");
+        txtMaxTaeglicheAusgaben = (TextField) scene.lookup("#txtMaxTaeglicheAusgaben");
+        txtTransaktionen = (TextField) scene.lookup("#txtTransaktionen");
 
         stage.setScene(scene);
         stage.show();
