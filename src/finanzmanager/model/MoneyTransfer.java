@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class MoneyTransfer {
 
+    private int id;
     private boolean additive;
     private Double value;
     private String description;
@@ -50,26 +51,15 @@ public class MoneyTransfer {
         this.date = date;
     }
 
-    public boolean isAdditive() {
-        return additive;
-    }
-
-    public Double getValue() {
-        return value;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Date getDate() {
-        return date;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "MoneyTransfer{" +
-                "additive=" + additive +
+                "id=" + id +
+                ", additive=" + additive +
                 ", value=" + value +
                 ", description='" + description + '\'' +
                 ", date=" + date +

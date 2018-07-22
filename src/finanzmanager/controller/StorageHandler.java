@@ -3,6 +3,8 @@ package finanzmanager.controller;
 import finanzmanager.model.MoneyTransfer;
 import finanzmanager.model.Property;
 import finanzmanager.model.Source;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.*;
@@ -23,8 +25,6 @@ public class StorageHandler {
 
     public StorageHandler(Property property) throws IOException {
 
-
-        //loggingHandler = new LoggingHandler(getClass())
         this.property = property;
 
         String url = "jdbc:sqlite:./transaction.db";
@@ -90,8 +90,10 @@ public class StorageHandler {
         return correct;
     }
 
-    public List<MoneyTransfer> getAllMoneyTransfers(){
-        List<MoneyTransfer> moneyTransferList = new ArrayList();
+    public ObservableList<MoneyTransfer> getAllMoneyTransfers(){
+
+        ObservableList moneyTransferList = FXCollections.observableArrayList();
+
         String sqlQuery = "SELECT rowid,* FROM moneytransfer";
 
         try {
@@ -102,18 +104,17 @@ public class StorageHandler {
                 Map<String, Object> row = getRowData(resultSet);
                 moneyTransferList.add(generateMoneytransfer(row));
             }
-            System.out.println(moneyTransferList.get(0).toString());
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        return moneyTransferList;
+        return (ObservableList)moneyTransferList;
     }
 
-    public List<Source> getAllSources() {
-        List<Source> sourceList = new ArrayList<>();
+    public ObservableList<Source> getAllSources() {
+        ObservableList<Source> sourceList = FXCollections.observableArrayList();
         String sql = "SELECT rowid,* FROM source";
         try {
             Statement statement = connection.createStatement();
@@ -121,18 +122,18 @@ public class StorageHandler {
             while (resultSet.next()){
                 Map<String, Object> row = getRowData(resultSet);
                 sourceList.add(generateSourceList(row));
-                sourceList.get(0).toString();
+                //sourceList.get(0).toString();
 
             }
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            return sourceList;
+            return  sourceList;
         }
 
     private Source generateSourceList(Map<String,Object> dataSource) {
-        System.out.println(dataSource.toString());
+        //System.out.println(dataSource.toString());
         int id = (int) dataSource.get("rowid");
         String name = (String) dataSource.get("name");
         Source source = new Source(id, name);
@@ -147,6 +148,7 @@ public class StorageHandler {
 
     public MoneyTransfer generateMoneytransfer(Map <String, Object> dataSource) throws ParseException {
         MoneyTransfer moneyTransfer = new MoneyTransfer();
+        moneyTransfer.setId((int) dataSource.get("rowid"));
         moneyTransfer.setAdditive((int)dataSource.get("additive") == 1);
         DateFormat dateFormat =  new SimpleDateFormat(property.getDateFormat(), Locale.GERMANY);
         Date date = dateFormat.parse((String) dataSource.get("date"));

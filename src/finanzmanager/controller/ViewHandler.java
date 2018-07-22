@@ -1,24 +1,40 @@
 package finanzmanager.controller;
 
 
+import finanzmanager.model.MoneyTransfer;
 import finanzmanager.model.Property;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ViewHandler extends Application {
 
+    public TextField txtFixAusgaben;
+    public TextField txtFixEinkommen;
+    public MenuItem miTransaction;
+    public TableColumn colAdditive;
+    public TableColumn colValue;
+    public TableColumn colDatum;
+    public TableColumn colDescription;
+    public TableColumn colSource;
+    public TableColumn colId;
     /**
      * Controls
      */
     @FXML private Button btnExit;
+    //@FXML private TableColumn colAdditive;
+    @FXML private TableView<MoneyTransfer> tableTransactions;
     @FXML public ComboBox cbQuellen;
     @FXML public Button btnDelete;
     @FXML public Button btnEdit;
@@ -35,6 +51,9 @@ public class ViewHandler extends Application {
     private Property settingsWindow;
     private Property sourceWindow;
     private Property transactionWindow;
+    private Scene scene;
+
+    private StorageHandler storageHandler;
 
 
     public ViewHandler() {
@@ -51,8 +70,31 @@ public class ViewHandler extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        StorageHandler storageHandler = new StorageHandler(mainWindow);
+        storageHandler = new StorageHandler(mainWindow);
+        storageHandler.getAllSources();
         createView(stage, mainWindow);
+        addDataToTable(storageHandler.getAllMoneyTransfers());
+    }
+
+    private void addDataToTable(ObservableList<MoneyTransfer> allMoneyTransfer){
+
+        List<PropertyValueFactory> propertyLists = new ArrayList<>();
+        propertyLists.add(new PropertyValueFactory<>("id"));
+        propertyLists.add(new PropertyValueFactory<>("additive"));
+        propertyLists.add(new PropertyValueFactory<>("value"));
+        propertyLists.add(new PropertyValueFactory<>("description"));
+        propertyLists.add(new PropertyValueFactory<>("date"));
+
+        for (int i =0; i < propertyLists.size(); i++){
+            //tableTransactions.getColumns().get(i).setCellValueFactory(propertyLists.get(i));
+        }
+        String test = "test";
+        tableTransactions.setItems(test);
+        //tableTransactions.setItems(allMoneyTransfer);
+
+        for (MoneyTransfer moneyTransfer: allMoneyTransfer){
+            System.out.println(moneyTransfer.toString());
+        }
     }
 
     public void exit() {
@@ -63,7 +105,10 @@ public class ViewHandler extends Application {
     private Scene createView(Stage stage, Property property) throws IOException {
         stage.setTitle(property.getTitle());
         Parent root = FXMLLoader.load(getClass().getResource(property.getViewPath()));
-        Scene scene = new Scene(root, property.getWidth(),property.getHeight());
+        scene = new Scene(root, property.getWidth(),property.getHeight());
+        tableTransactions = (TableView) scene.lookup("#tableTransactions");
+        txtFixAusgaben = (TextField) scene.lookup("#txtFixAusgaben");
+
 
         stage.setScene(scene);
         stage.show();

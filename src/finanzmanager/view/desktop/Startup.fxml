@@ -112,13 +112,14 @@
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="317.0" prefWidth="451.0">
+                        <TableView fx:id="tableTransactions" prefHeight="317.0" prefWidth="451.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="+/-" />
-                            <TableColumn prefWidth="75.0" text="Betrag" />
-                              <TableColumn prefWidth="75.0" text="Datum" />
-                              <TableColumn prefWidth="220.0" text="Bezeichnung" />
-                              <TableColumn prefWidth="75.0" text="Bezug" />
+                            <TableColumn fx:id="colId"  prefWidth="75.0" text="rowid" />
+                            <TableColumn fx:id="colAdditive" prefWidth="75.0" text="+/-" />
+                            <TableColumn fx:id="colValue" prefWidth="75.0" text="Betrag" />
+                              <TableColumn fx:id="colDatum" prefWidth="75.0" text="Datum" />
+                              <TableColumn fx:id="colDescription" prefWidth="220.0" text="Bezeichnung" />
+                              <TableColumn fx:id="colSource" prefWidth="75.0" text="Bezug" />
                           </columns>
                         </TableView>
                         <VBox alignment="CENTER" prefHeight="317.0" prefWidth="151.0">
