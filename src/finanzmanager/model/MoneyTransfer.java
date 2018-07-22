@@ -55,6 +55,26 @@ public class MoneyTransfer {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public boolean isAdditive() {
+        return additive;
+    }
+
+    public Double getValue() {
+        return value;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
         return "MoneyTransfer{" +

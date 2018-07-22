@@ -86,11 +86,9 @@ public class ViewHandler extends Application {
         propertyLists.add(new PropertyValueFactory<>("date"));
 
         for (int i =0; i < propertyLists.size(); i++){
-            //tableTransactions.getColumns().get(i).setCellValueFactory(propertyLists.get(i));
+            tableTransactions.getColumns().get(i).setCellValueFactory(propertyLists.get(i));
         }
-        String test = "test";
-        tableTransactions.setItems(test);
-        //tableTransactions.setItems(allMoneyTransfer);
+        tableTransactions.setItems(allMoneyTransfer);
 
         for (MoneyTransfer moneyTransfer: allMoneyTransfer){
             System.out.println(moneyTransfer.toString());

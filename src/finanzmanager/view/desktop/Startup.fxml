@@ -114,7 +114,7 @@
                      <children>
                         <TableView fx:id="tableTransactions" prefHeight="317.0" prefWidth="451.0">
                           <columns>
-                            <TableColumn fx:id="colId"  prefWidth="75.0" text="rowid" />
+                            <TableColumn fx:id="colId" prefWidth="75.0" text="rowid" />
                             <TableColumn fx:id="colAdditive" prefWidth="75.0" text="+/-" />
                             <TableColumn fx:id="colValue" prefWidth="75.0" text="Betrag" />
                               <TableColumn fx:id="colDatum" prefWidth="75.0" text="Datum" />
